@@ -6,43 +6,64 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:27:28 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/17 17:51:12 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/20 18:14:57 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static char *read_file_lines(int fd) 
+{
+    char *buf;
+    char *temp;
+    char *newbuf;
+
+    buf = malloc(sizeof(char));
+    if (!buf)
+        return NULL;
+    buf[0] = '\0';
+    while (1) 
+    {
+        temp = get_next_line(fd);
+        if (temp == NULL)
+            break;
+        newbuf = ft_strjoin(buf, temp);
+        free(temp);
+        free(buf);
+        buf = newbuf;
+    }
+    return buf;
+}
 
 char **read_map(char *file)
 {
     int fd;
     char **arr;
     char *buf;
-    char *temp;
+
     if((fd = ft_open_fd(file)) < 0)
         return NULL;
-    buf = malloc(sizeof(char) * 1);
-    if(!buf)
-        return (NULL);
-    buf[0] = '\0';
-    temp = buf;
-    while(1)
-    {
-        temp = get_next_line(fd);
-        if(temp == NULL)
-            break;
-        buf = ft_strjoin(buf, temp);
-        free(temp);
-    }
+    buf = read_file_lines(fd);
     arr = ft_split(buf, '\n');
     free(buf);
     close(fd);
     return (arr);
 }
 
+static int ft_count(char **map,int i,int j)
+{
+    static int k;
+
+    if(map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+        k++;
+    return(k);
+}
+
 void check_map(char **map)
 {
     int i;
     int j;
+    int k;
 
     i = 0;
     j = 0;
@@ -50,18 +71,18 @@ void check_map(char **map)
     {
         while(map[i][j])
         {
+            k = ft_count(map,i,j);
             if(map[i][j] != '1' && map[i][j] != '0' &&
                 map[i][j] != 'N' && map[i][j] != 'S' &&
-                map[i][j] != 'E' && map[i][j] != 'W')
-            {
+                map[i][j] != 'E' && map[i][j] != 'W' &&
+                map[i][j] != ' ')
                 printf("Error\nParsing incorrect %c\n",map[i][j]);
-            }
             j++;
         }
         i++;
         j = 0;
     }
+    if(k != 1)
+        ft_puterror("Problem with count number");
 }
-
-
 

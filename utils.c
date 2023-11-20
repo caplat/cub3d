@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:12:21 by acaplat           #+#    #+#             */
-/*   Updated: 2023/11/17 15:29:39 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/20 17:13:36 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,28 @@ void print_arr(char **arr)
     i = -1;
     while(arr[++i])
         printf("%s\n",arr[i]);
+}
+
+int count_line(char **map)
+{
+    int i;
+
+    i = 0;
+    while(map[i])
+        i++;
+    printf("%d\n",i);
+    return(i);
+}
+
+void free_arr(char **map)
+{
+    int i;
+
+    i = 0;
+    while(map[i])
+    {
+        free(map[i]);
+        i++;
+    }
+    free(map);
 }

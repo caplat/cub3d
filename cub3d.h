@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/17 18:09:05 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/20 17:09:43 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ typedef struct s_cub
 
 } t_cub;
 
+typedef struct s_dim
+{
+    int hauteur;
+    int largeur;
+}   t_dim;
+
 //map
 
 char **read_map(char *file);
@@ -48,10 +54,10 @@ void check_file_extension(char *file);
 
 //utils
 
+int count_line(char **map);
 void print_arr(char **arr);
+void free_arr(char **map);
 
 //wall
-
-void check_wall(char **map);
 
 #endif
