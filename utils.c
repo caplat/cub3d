@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:12:21 by acaplat           #+#    #+#             */
-/*   Updated: 2023/11/20 17:13:36 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/21 15:46:16 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int count_line(char **map)
     i = 0;
     while(map[i])
         i++;
-    printf("%d\n",i);
     return(i);
 }
 

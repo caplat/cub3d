@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/20 17:09:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/21 16:46:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,22 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-
 typedef struct s_cub
 {
     char **map;
-    char *north_texture;
-    char *south_texture;
-    char *west_texture;
-    char *east_texture;
-    char *ceiling_texture;
-    char *floor_texture; 
+    int horizontale;
+    int verticale;
+}  t_cub;
 
-} t_cub;
-
-typedef struct s_dim
+typedef struct s_point
 {
-    int hauteur;
-    int largeur;
-}   t_dim;
+    int x;
+    int y;
+}   t_point;
+
+//init
+
+void init(t_cub *cub);
 
 //map
 
@@ -58,6 +56,9 @@ int count_line(char **map);
 void print_arr(char **arr);
 void free_arr(char **map);
 
-//wall
+//flood_fill
+
+t_point find_start(char **map);
+void flood_fill(char **map,t_point begin,int horizontale,int verticale);
 
 #endif
