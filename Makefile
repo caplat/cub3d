@@ -6,6 +6,7 @@ srcs/map.c \
 srcs/init.c \
 srcs/utils/utils.c \
 srcs/flood_fill.c \
+srcs/wall.c \
 
 OBJS = ${SRCS:.c=.o}
 
