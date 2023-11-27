@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/23 12:11:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:53:18 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void find_dim(char **map,t_cub *cub)
 int main(int argc, char **argv)
 {
     t_cub cub;
-    // t_point begin;
 
     init(&cub);
     check_args(argc);
@@ -45,10 +44,8 @@ int main(int argc, char **argv)
     find_dim(cub.map, &cub);
     check_wall(cub.map);
     printf("\nverticale : %d\nhorizontale : %d\n",cub.verticale,cub.horizontale);
-    // begin = find_start(cub.map);
-    // printf("\nx : %d\ny : %d\n",begin.x,begin.y);
-    // flood_fill(cub.map,begin,cub.horizontale,cub.verticale);
-    // print_arr(cub.map);
+    printf("allo\n");
+    flood_fill(cub.map,cub.horizontale,cub.verticale);
     free_arr(cub.map);
     return 0;
 }
