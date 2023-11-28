@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/27 15:19:55 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:03:18 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ void check_map_closure(char **map,t_point var,int temp);
 
 t_point find_start(char **map);
 void flood_fill(char **map,int horizontale,int verticale);
+void fill_bis(char **map,t_point cur,t_cub *cub,t_point start);
 
 //wall
 
-void check_wall(char **map);
+void check_wall(char **map,t_cub *cub);
 
 #endif

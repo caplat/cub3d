@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:10:37 by acaplat           #+#    #+#             */
-/*   Updated: 2023/11/27 17:52:25 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/28 18:12:38 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void check_wall_n(char **map)
     j = 0;
     while(map[0][j])
     {
-        if(map[0][j] != '1' && map[0][j] != ' ')
+        if(map[0][j] != '2' && map[0][j] != ' ')
         {    
             ft_puterror("North wall not closed");
         }
@@ -38,7 +38,7 @@ static void check_wall_s(char ** map)
         last_wall++;
     while(map[last_wall][j])
     { 
-        if(map[last_wall][j] != '1' && map[last_wall][j] != ' ')
+        if(map[last_wall][j] != '2' && map[last_wall][j] != ' ')
         {    
             ft_puterror("South wall not closed");
         }
@@ -53,13 +53,43 @@ static void check_wall_sides(char **map)
     i = 1;
     while(map[i])
     {
-        if((map[i][0] != '1' && map[i][0] != ' ') || (map[i][ft_strlen(map[i]) - 1] != '1' 
+        if((map[i][0] != '2' && map[i][0] != ' ') || (map[i][ft_strlen(map[i]) - 1] != '2' 
             && map[i][ft_strlen(map[i]) -1] != ' '))
         {
             ft_puterror("Sides wall not closed");
         }
         i++;
     }  
+}
+
+static void check_outline(char **map,t_cub *cub)
+{
+    t_point begin;
+    t_point start;
+    t_point var;
+
+    var.x = 0;
+    var.y = 0;
+    while(map[var.x])
+    {
+        while(map[var.x][var.y])
+        {
+            if(map[var.x][var.y] == '1')
+            {
+                begin.x = var.x;
+                begin.y = var.y;
+                start.x = var.x;
+                start.y = var.y;
+                fill_bis(map,begin,cub,start);
+                printf("\n");
+                print_arr(map);
+                return;
+            }   
+            var.y++;
+        }
+        var.x++;
+        var.y = 0;
+    }
 }
 
 // static void length_diff(char **map)
@@ -140,8 +170,9 @@ static void check_wall_sides(char **map)
 //     }
 // }
 
-void check_wall(char **map)
+void check_wall(char **map,t_cub *cub)
 {
+    check_outline(map,cub);
     check_wall_n(map);
     check_wall_s(map);
     check_wall_sides(map);
