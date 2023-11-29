@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:12:21 by acaplat           #+#    #+#             */
-/*   Updated: 2023/11/27 15:07:33 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:15:55 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,47 @@ void free_arr(char **map)
     free(map);
 }
 
-int countchar(char c,char **map)
+static void do_cpy(char **map,char **map_cpy)
 {
     int i;
     int j;
-    int count;
 
     i = 0;
     j = 0;
-    count = 0;
-
     while(map[i])
     {
         while(map[i][j])
         {
-            if(map[i][j] == c)
-                count++;
+            map_cpy[i][j] = map[i][j];
             j++;
         }
+        map_cpy[i][j] = '\0';
         i++;
-        j = 0;    
+        j = 0;
     }
-    return(count);
 }
-void check_map_closure(char **map,t_point var,int temp)
+
+char ** map_cpy(char **map,int verticale)
 {
-    while(map[var.x][temp])
+    char **new_map;
+    int i = -1;
+
+    new_map = malloc(sizeof(char*) * verticale + 1);
+    if(new_map == NULL)
     {
-        if(map[var.x][temp] != '1')
-            ft_puterror("Map not closed");
-        temp++;
+        ft_puterror("failed allocation new_map");
+        return NULL;
     }
+    while(++i < verticale)
+    {
+        new_map[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
+        if(!new_map[i])
+        {
+            free_arr(new_map);
+            ft_puterror("failed allocation new_map[i]");
+            return(NULL);
+        }
+    }
+    do_cpy(map,new_map);
+    return(new_map);
 }

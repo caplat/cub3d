@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:50:43 by acaplat           #+#    #+#             */
-/*   Updated: 2023/11/28 18:39:57 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:33:57 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,34 @@ static void fill(char **map,t_point cur,int horizontale,int verticale)
 void flood_fill(char **map,int horizontale,int verticale)
 {
     t_point begin;
+    char **map_ter;
     int i;
     int j;
 
     i = 0;
     j = 0;
-    while(map[i])
+    map_ter = map_cpy(map,verticale);
+    while(map_ter[i])
     {
-        while(map[i][j])
+        while(map_ter[i][j])
         {
-            if(map[i][j] == ' ')
+            if(map_ter[i][j] == ' ')
             {
                 begin.x = i;
                 begin.y = j;
-                fill(map,begin,horizontale,verticale);
+                fill(map_ter,begin,horizontale,verticale);
             }
             j++;
         }
         i++;
         j = 0;
     }
-    print_arr(map);
+    printf("\n");
+    print_arr(map_ter);
+    free_arr(map_ter);
 }
 
-void fill_bis(char **map,t_point cur,t_cub *cub,t_point start)
+void fill_bis(char **map,t_point cur,t_cub *cub)
 {
     t_point size;
 
@@ -83,19 +87,19 @@ void fill_bis(char **map,t_point cur,t_cub *cub,t_point start)
     // printf("cur.x :%d\ncur.y :%d\n",cur.x,cur.y);
     // printf("\n");
     if(cur.x > 0)
-        fill_bis(map, (t_point){cur.x - 1, cur.y},cub,start);
+        fill_bis(map, (t_point){cur.x - 1, cur.y},cub);
     if(cur.x < size.x - 1)
-	    fill_bis(map, (t_point){cur.x + 1, cur.y},cub,start);
+	    fill_bis(map, (t_point){cur.x + 1, cur.y},cub);
     if(cur.y > 0)
-	    fill_bis(map, (t_point){cur.x, cur.y - 1},cub,start);
+	    fill_bis(map, (t_point){cur.x, cur.y - 1},cub);
     if(cur.y < size.y - 1)
-	    fill_bis(map, (t_point){cur.x, cur.y + 1},cub,start);
+	    fill_bis(map, (t_point){cur.x, cur.y + 1},cub);
     if(cur.x > 0 && cur.y > 0)
-       fill_bis(map, (t_point){cur.x - 1, cur.y - 1},cub,start);
+       fill_bis(map, (t_point){cur.x - 1, cur.y - 1},cub);
     if(cur.x > 0 && cur.y < size.y - 1)
-        fill_bis(map, (t_point){cur.x - 1, cur.y + 1},cub,start);
+        fill_bis(map, (t_point){cur.x - 1, cur.y + 1},cub);
     if(cur.x < size.x - 1 && cur.y > 0)
-        fill_bis(map, (t_point){cur.x + 1, cur.y - 1},cub,start);
+        fill_bis(map, (t_point){cur.x + 1, cur.y - 1},cub);
     if(cur.x < size.x - 1 && cur.y < size.y - 1)
-         fill_bis(map, (t_point){cur.x + 1, cur.y + 1},cub,start);
+         fill_bis(map, (t_point){cur.x + 1, cur.y + 1},cub);
 }

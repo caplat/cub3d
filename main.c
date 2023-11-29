@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/28 17:57:15 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:29:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void find_dim(char **map,t_cub *cub)
         i++;
         j = 0;
     }
+    if(cub->horizontale == 0 && cub->verticale == 0)
+        ft_puterror("map is empty");
 }
 
 int main(int argc, char **argv)
@@ -42,9 +44,11 @@ int main(int argc, char **argv)
     if(cub.map != NULL)
         print_arr(cub.map);
     find_dim(cub.map, &cub);
-    check_wall(cub.map,&cub);
     printf("\nverticale : %d\nhorizontale : %d\n",cub.verticale,cub.horizontale);
-    // flood_fill(cub.map,cub.horizontale,cub.verticale);
+    check_wall(cub.map,&cub);
+    flood_fill(cub.map,cub.horizontale,cub.verticale);
+    printf("\n");
+    print_arr(cub.map);
     free_arr(cub.map);
     return 0;
 }

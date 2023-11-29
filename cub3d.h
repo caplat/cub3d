@@ -6,9 +6,10 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/28 17:03:18 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/29 15:49:33 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -55,14 +56,13 @@ void check_file_extension(char *file);
 int count_line(char **map);
 void print_arr(char **arr);
 void free_arr(char **map);
-int countchar(char c,char **map);
-void check_map_closure(char **map,t_point var,int temp);
+char ** map_cpy(char **map,int verticale);
 
 //flood_fill
 
 t_point find_start(char **map);
 void flood_fill(char **map,int horizontale,int verticale);
-void fill_bis(char **map,t_point cur,t_cub *cub,t_point start);
+void fill_bis(char **map,t_point cur,t_cub *cub);
 
 //wall
 
