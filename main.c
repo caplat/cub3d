@@ -6,9 +6,10 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/29 18:29:42 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:45:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../cub3d.h"
 
@@ -36,6 +37,7 @@ static void find_dim(char **map,t_cub *cub)
 int main(int argc, char **argv)
 {
     t_cub cub;
+    t_mlx mlx;
 
     init(&cub);
     check_args(argc);
@@ -50,5 +52,8 @@ int main(int argc, char **argv)
     printf("\n");
     print_arr(cub.map);
     free_arr(cub.map);
+    open_window(&mlx);
+    mlx_loop(mlx.id);
+    mlx_terminate(mlx.id);
     return 0;
 }

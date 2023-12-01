@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:51:16 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/29 18:25:55 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/11/17 16:49:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	check_file_extension(char *file)
 		file++;
 	}
 	ft_puterror("Map extension is wrong!");
+	exit(1);
 }
 
 int	ft_open_fd(char *filename)
@@ -59,6 +60,7 @@ int	ft_open_fd(char *filename)
 	if (fd < 0)
 	{
 		ft_puterror("Problem with file");
+		return(-1);	
 	}
 	return (fd);
 }

@@ -6,14 +6,14 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/29 15:49:33 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:13:41 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+#include "./MLX42/include/MLX42/MLX42.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -35,6 +35,11 @@ typedef struct s_point
     int x;
     int y;
 }   t_point;
+
+typedef struct s_mlx
+{
+    mlx_t *id;
+}   t_mlx;
 
 //init
 
@@ -67,5 +72,9 @@ void fill_bis(char **map,t_point cur,t_cub *cub);
 //wall
 
 void check_wall(char **map,t_cub *cub);
+
+//mlx
+
+void open_window(t_mlx *mlx);
 
 #endif
