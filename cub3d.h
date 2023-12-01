@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/01 16:13:41 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/01 18:35:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct s_mlx
     mlx_t *id;
 }   t_mlx;
 
+typedef struct s_player
+{
+    t_point position;
+    double direction;
+}   t_player;
+
 //init
 
 void init(t_cub *cub);
@@ -49,6 +55,7 @@ void init(t_cub *cub);
 
 char **read_map(char *file);
 void check_map(char **map);
+void find_pos(char **map,t_player *player);
 
 //check
 

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:27:28 by derblang          #+#    #+#             */
-/*   Updated: 2023/11/20 18:14:57 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/01 18:41:11 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,35 @@ void check_map(char **map)
         ft_puterror("Problem with count number");
 }
 
+void find_pos(char **map,t_player *player)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while(map[i])
+    {
+        while(map[i][j])
+        {
+            if(map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' 
+                || map[i][j] == 'W')
+            {
+                player->position.x = i;
+                player->position.y = j;
+            }
+            if(map[i][j] == 'N')
+                player->direction = M_PI / 4;
+            if(map[i][j] == 'E')
+                player->direction = 0;
+            if(map[i][j] == 'W')
+                player->direction = M_PI / 2;
+            if(map[i][j] == 'S')
+                player->direction = (3 * M_PI) / 4;
+            j++;
+        }
+        i++;
+        j = 0;
+    }
+    printf("player.x %d\nplayer.y %d\nplayer dir %f\n",player->position.x,player->position.y,player->direction);
+}
