@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:27:28 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/01 18:41:11 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/04 17:15:27 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,13 @@ void find_pos(char **map,t_player *player)
                 player->position.y = j;
             }
             if(map[i][j] == 'N')
-                player->direction = M_PI / 4;
+                player->direction = M_PI;
             if(map[i][j] == 'E')
-                player->direction = 0;
-            if(map[i][j] == 'W')
                 player->direction = M_PI / 2;
+            if(map[i][j] == 'W')
+                player->direction = (3 * M_PI) / 2;
             if(map[i][j] == 'S')
-                player->direction = (3 * M_PI) / 4;
+                player->direction = 0;
             j++;
         }
         i++;
