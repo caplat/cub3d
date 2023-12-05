@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/04 18:21:27 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/05 17:48:54 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_point
 typedef struct s_mlx
 {
     mlx_t *id;
+    mlx_image_t* img;
 }   t_mlx;
 
 typedef struct s_player
@@ -83,6 +84,6 @@ void check_wall(char **map,t_cub *cub);
 
 //mlx
 
-void open_window(t_mlx *mlx);
+void open_window(t_mlx *mlx,t_cub *cub);
 
 #endif

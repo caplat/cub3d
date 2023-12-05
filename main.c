@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/04 18:31:03 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/05 18:41:58 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ int main(int argc, char **argv)
     flood_fill(cub.map,cub.horizontale,cub.verticale);
     printf("\n");
     print_arr(cub.map);
+    open_window(&mlx,&cub);
     free_arr(cub.map);
-    open_window(&mlx);
-    mlx_loop(mlx.id);
-    mlx_terminate(mlx.id);
     return 0;
 }
