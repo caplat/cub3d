@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/05 17:48:54 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/06 17:38:45 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_player
 {
     t_point position;
     double direction;
-    double fov[2];
+    // double fov[2];
 }   t_player;
 
 //init
@@ -84,6 +84,12 @@ void check_wall(char **map,t_cub *cub);
 
 //mlx
 
-void open_window(t_mlx *mlx,t_cub *cub);
+void open_window(t_mlx *mlx,t_cub *cub,t_player *player);
+void draw_character(t_mlx *mlx,int x,int y);
+
+//event
+
+void event(mlx_key_data_t keycode,void *content);
+void update_player_position(t_mlx *mlx,void *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/05 18:41:58 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/06 17:38:08 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int main(int argc, char **argv)
     cub.map = read_map(argv[1]);
     check_map(cub.map);
     find_pos(cub.map,&player);
-    player.fov[0] = player.direction - (M_PI / 6);
-    player.fov[1] = player.direction + (M_PI / 6);
+    // player.fov[0] = player.direction - (M_PI / 6);
+    // player.fov[1] = player.direction + (M_PI / 6);
     if(cub.map != NULL)
         print_arr(cub.map);
     find_dim(cub.map, &cub);
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     flood_fill(cub.map,cub.horizontale,cub.verticale);
     printf("\n");
     print_arr(cub.map);
-    open_window(&mlx,&cub);
+    open_window(&mlx,&cub,&player);
     free_arr(cub.map);
     return 0;
 }
