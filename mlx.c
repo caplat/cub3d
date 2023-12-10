@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:25:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/06 17:39:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/10 16:41:54 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void draw_map(t_mlx *mlx,t_cub *cub)
 void open_window(t_mlx *mlx,t_cub *cub,t_player *player)
 {
     (void)cub;
+    (void)player;
     bool success;
     
     mlx->id = mlx_init(WIDTH,HEIGHT,"CUBE",true);
@@ -88,7 +89,7 @@ void open_window(t_mlx *mlx,t_cub *cub,t_player *player)
     mlx_image_to_window(mlx->id,mlx->img,0,0);
     draw_map(mlx,cub);
     mlx_key_hook(mlx->id,event,mlx);
-    success = mlx_loop_hook(mlx->id,update_player_position,player);
+    success = mlx_loop_hook(mlx->id,update_player_position,mlx);
     if(!success)
         ft_puterror("loop hook failed");
     mlx_loop(mlx->id);

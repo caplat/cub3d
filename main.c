@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/06 17:38:08 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/10 16:57:36 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int main(int argc, char **argv)
     cub.map = read_map(argv[1]);
     check_map(cub.map);
     find_pos(cub.map,&player);
+    mlx.player = &player;
     // player.fov[0] = player.direction - (M_PI / 6);
     // player.fov[1] = player.direction + (M_PI / 6);
     if(cub.map != NULL)
