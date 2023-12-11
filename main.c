@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:50:31 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/10 16:57:36 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/11 14:34:31 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int main(int argc, char **argv)
         print_arr(cub.map);
     find_dim(cub.map, &cub);
     printf("\nverticale : %d\nhorizontale : %d\n",cub.verticale,cub.horizontale);
+    mlx.cub = &cub;
     check_wall(cub.map,&cub);
     flood_fill(cub.map,cub.horizontale,cub.verticale);
     printf("\n");
     print_arr(cub.map);
-    open_window(&mlx,&cub,&player);
+    open_window(&mlx);
     free_arr(cub.map);
     return 0;
 }

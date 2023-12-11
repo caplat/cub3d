@@ -6,13 +6,13 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:25:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/10 16:41:54 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:50:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void draw_square(t_mlx *mlx,int x,int y)
+void draw_square(t_mlx *mlx,int x,int y)
 {
     int i;
     int j;
@@ -50,24 +50,18 @@ void draw_character(t_mlx *mlx,int x,int y)
     }
 }
 
-static void draw_map(t_mlx *mlx,t_cub *cub)
+void delete_character(t_mlx *mlx,int x,int y)
 {
     int i;
     int j;
 
     i = 0;
     j = 0;
-    while(cub->map[i])
+    while(i < 16)
     {
-        while(cub->map[i][j])
+        while(j < 16)
         {
-            if(cub->map[i][j] == '1')
-                draw_square(mlx,j * 64,i * 64);
-            if(cub->map[i][j] == 'N' || cub->map[i][j] == 'S' 
-                || cub->map[i][j] == 'E' || cub->map[i][j] == 'W')
-            {
-                draw_character(mlx,j * 64, i * 64);
-            }
+            mlx_put_pixel(mlx->img, (x + 32) + i,(y + 32) + j,0x00000000);
             j++;
         }
         i++;
@@ -75,11 +69,18 @@ static void draw_map(t_mlx *mlx,t_cub *cub)
     }
 }
 
-
-void open_window(t_mlx *mlx,t_cub *cub,t_player *player)
+int check_collision(t_mlx *mlx)
 {
-    (void)cub;
-    (void)player;
+    int x = (int)(mlx->player->position.x + 0.5);
+    int y = (int)(mlx->player->position.y + 0.5);
+
+    if(mlx->cub->map[x][y] == '1')
+        return(1);
+    return(0);
+}
+
+void open_window(t_mlx *mlx)
+{
     bool success;
     
     mlx->id = mlx_init(WIDTH,HEIGHT,"CUBE",true);
@@ -87,9 +88,12 @@ void open_window(t_mlx *mlx,t_cub *cub,t_player *player)
         ft_puterror("problem with window");
     mlx->img = mlx_new_image(mlx->id,WIDTH,HEIGHT);
     mlx_image_to_window(mlx->id,mlx->img,0,0);
-    draw_map(mlx,cub);
+    // draw_map(mlx,cub);
     mlx_key_hook(mlx->id,event,mlx);
     success = mlx_loop_hook(mlx->id,update_player_position,mlx);
+     if(!success)
+        ft_puterror("loop hook failed");
+    success = mlx_loop_hook(mlx->id,draw_map,mlx);
     if(!success)
         ft_puterror("loop hook failed");
     mlx_loop(mlx->id);
