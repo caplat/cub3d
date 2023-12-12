@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:25:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/11 15:50:06 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:19:52 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,30 @@ void draw_square(t_mlx *mlx,int x,int y)
 
     i = 0;
     j = 0;
-    while(i < 64)
+    while(i < 63)
     {
-        while(j < 64)
+        while(j < 63)
         {
-            mlx_put_pixel(mlx->img,x + i,y + j, 0xD3D3D3);
+            mlx_put_pixel(mlx->img,x + i,y + j, 0x000000FF);
+            j++;
+        }
+        i++;
+        j = 0;
+    }
+}
+
+void draw_square_bis(t_mlx *mlx,int x,int y)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while(i < 63)
+    {
+        while(j < 63)
+        {
+            mlx_put_pixel(mlx->img,x + i,y + j, 0xFFFFFFFF);
             j++;
         }
         i++;
@@ -90,11 +109,11 @@ void open_window(t_mlx *mlx)
     mlx_image_to_window(mlx->id,mlx->img,0,0);
     // draw_map(mlx,cub);
     mlx_key_hook(mlx->id,event,mlx);
-    success = mlx_loop_hook(mlx->id,update_player_position,mlx);
-     if(!success)
-        ft_puterror("loop hook failed");
     success = mlx_loop_hook(mlx->id,draw_map,mlx);
     if(!success)
+        ft_puterror("loop hook failed");
+    success = mlx_loop_hook(mlx->id,update_player_position,mlx);
+     if(!success)
         ft_puterror("loop hook failed");
     mlx_loop(mlx->id);
     mlx_terminate(mlx->id);

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/11 15:08:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:22:40 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_float
 typedef struct s_player
 {
     t_float position;
-    double direction;
+    double angle;
     // double fov[2];
 }   t_player;
 
@@ -93,6 +93,7 @@ void check_wall(char **map,t_cub *cub);
 //mlx
 
 void draw_square(t_mlx *mlx,int x,int y);
+void draw_square_bis(t_mlx *mlx,int x,int y);
 void open_window(t_mlx *mlx);
 void draw_character(t_mlx *mlx,int x,int y);
 void delete_character(t_mlx *mlx,int x,int y);
