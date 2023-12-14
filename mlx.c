@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:25:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/12 16:19:52 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/14 18:11:30 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,15 @@ void delete_character(t_mlx *mlx,int x,int y)
     }
 }
 
-int check_collision(t_mlx *mlx)
-{
-    int x = (int)(mlx->player->position.x + 0.5);
-    int y = (int)(mlx->player->position.y + 0.5);
+// int check_collision(t_mlx *mlx)
+// {
+//     int x = (int)(mlx->player->position.x + 0.5);
+//     int y = (int)(mlx->player->position.y + 0.5);
 
-    if(mlx->cub->map[x][y] == '1')
-        return(1);
-    return(0);
-}
+//     if(mlx->cub->map[x][y] == '1')
+//         return(1);
+//     return(0);
+// }
 
 void open_window(t_mlx *mlx)
 {
@@ -109,11 +109,8 @@ void open_window(t_mlx *mlx)
     mlx_image_to_window(mlx->id,mlx->img,0,0);
     // draw_map(mlx,cub);
     mlx_key_hook(mlx->id,event,mlx);
-    success = mlx_loop_hook(mlx->id,draw_map,mlx);
+    success = mlx_loop_hook(mlx->id,loop,mlx);
     if(!success)
-        ft_puterror("loop hook failed");
-    success = mlx_loop_hook(mlx->id,update_player_position,mlx);
-     if(!success)
         ft_puterror("loop hook failed");
     mlx_loop(mlx->id);
     mlx_terminate(mlx->id);

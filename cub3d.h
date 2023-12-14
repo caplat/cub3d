@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/12 16:22:40 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/14 18:11:08 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef struct s_float
 typedef struct s_player
 {
     t_float position;
-    double angle;
+    float angle;
+    float pdx;
+    float pdy;
     // double fov[2];
 }   t_player;
 
@@ -102,7 +104,9 @@ int check_collision(t_mlx *mlx);
 //event
 
 void event(mlx_key_data_t keycode,void *content);
-void update_player_position(void *param);
-void draw_map(void *param);
+void loop(void *param);
+// void draw_map(t_mlx *mlx);
+// void rotate(t_mlx *mlx);
+// void draw_vec_dir(t_mlx *mlx);
 
 #endif

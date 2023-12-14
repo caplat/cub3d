@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:27:28 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/12 16:23:34 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/14 17:25:26 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ void find_pos(char **map,t_player *player)
         i++;
         j = 0;
     }
+    player->pdx = cosf(player->angle);
+    player->pdy = sinf(player->angle);
     printf("player.x %f\nplayer.y %f\nplayer angle %f\n",player->position.x,player->position.y,player->angle);
 }
