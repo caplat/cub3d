@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:28:15 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/14 18:58:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/14 19:22:18 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,8 @@ static void draw_vec_dir(t_mlx *mlx)
         ((mlx->player->position.x + 0.5) + (mlx->player->pdx) * 1) * 64, 0xFFFF00FF);
 }
 
-void loop(void *param)
+static void update_pos_player(t_mlx *mlx)
 {
-    t_mlx *mlx;
-    // float old_posx;
-
-    mlx = param;
-    draw_map(mlx);
     draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
     if(mlx_is_key_down(mlx->id, MLX_KEY_S))
     {
@@ -106,6 +101,15 @@ void loop(void *param)
         mlx->player->position.y -= 0.1;
         draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
     }
+}
+
+void loop(void *param)
+{
+    t_mlx *mlx;
+
+    mlx = param;
+    draw_map(mlx);
+    update_pos_player(mlx);
     draw_vec_dir(mlx);
 }
 

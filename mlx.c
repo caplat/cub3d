@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:25:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/14 18:11:30 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/14 19:16:32 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void draw_character(t_mlx *mlx,int x,int y)
     {
         while(j < 16)
         {
-            mlx_put_pixel(mlx->img, (x + 32) + i,(y + 32) + j,0xFF0000FF);
+            mlx_put_pixel(mlx->img, (x + 24) + i,(y + 24) + j,0xFF0000FF);
             j++;
         }
         i++;
@@ -80,7 +80,7 @@ void delete_character(t_mlx *mlx,int x,int y)
     {
         while(j < 16)
         {
-            mlx_put_pixel(mlx->img, (x + 32) + i,(y + 32) + j,0x00000000);
+            mlx_put_pixel(mlx->img, (x + 24) + i,(y + 24) + j,0x00000000);
             j++;
         }
         i++;
@@ -107,7 +107,6 @@ void open_window(t_mlx *mlx)
         ft_puterror("problem with window");
     mlx->img = mlx_new_image(mlx->id,WIDTH,HEIGHT);
     mlx_image_to_window(mlx->id,mlx->img,0,0);
-    // draw_map(mlx,cub);
     mlx_key_hook(mlx->id,event,mlx);
     success = mlx_loop_hook(mlx->id,loop,mlx);
     if(!success)
