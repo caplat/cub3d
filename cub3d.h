@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/14 18:11:08 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/15 16:33:12 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_mlx
     mlx_image_t* img;
     t_player *player;
     t_cub *cub;
+    t_point map;
+    t_float delta;
 }   t_mlx;
 
 //init

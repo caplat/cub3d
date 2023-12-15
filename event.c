@@ -6,16 +6,58 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:28:15 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/14 19:22:18 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/15 17:53:46 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+static void draw_vec_dir(t_mlx *mlx)
+{
+    float rayon;
+
+    rayon = 0;
+    // mlx->delta.x = sqrt(1 + (pow((double)mlx->player->pdy,2) / pow((double)mlx->player->pdx,2)));
+    // mlx->delta.y = sqrt(1 + (pow((double)mlx->player->pdx,2) / pow((double)mlx->player->pdy,2)));
+    while(rayon < 1)
+    {
+        mlx_put_pixel(mlx->img, ((mlx->player->position.y + 0.5) + (mlx->player->pdy) * rayon) * 64, 
+            ((mlx->player->position.x + 0.5) + (mlx->player->pdx) * rayon) * 64, 0xFF0000FF);
+        rayon += 0.05;
+    }
+}
+
+// static void ray_casting_horizontal(rt_mlx *mlx)
+// {
+//     float atan;
+
+//     atan = -1/tan(mlx->player->angle)
+//     if(mlx->player->angle > M_PI / 2 && mlx->player->angle < (3 * M_PI) / 2)
+//     {
+//         mlx->map.y = ((int)mlx->player->position.y / 64) * 64;
+//         mlx->map.x = ((mlx->player->position.y - mlx->map.y) * atan + mlx->player->position.x)
+        
+//     }
+// }
+
+static void delete_vec_dir(t_mlx *mlx)
+{
+    float rayon;
+    
+    rayon = 0;
+    while(rayon < 1)
+    {
+        mlx_put_pixel(mlx->img, ((mlx->player->position.y + 0.5) + (mlx->player->pdy) * rayon) * 64, 
+            ((mlx->player->position.x + 0.5) + (mlx->player->pdx) * rayon) * 64, 0x00000000);
+        rayon += 0.05;
+    }
+}
+
 static void rotate(t_mlx *mlx)
 {
     if(mlx_is_key_down(mlx->id, MLX_KEY_LEFT))
     {
+        delete_vec_dir(mlx);
         mlx->player->angle += 0.1;
         if(mlx->player->angle > 2 * M_PI)
             mlx->player->angle -= 2 * M_PI;
@@ -24,6 +66,7 @@ static void rotate(t_mlx *mlx)
     }
     if(mlx_is_key_down(mlx->id, MLX_KEY_RIGHT))
     {
+        delete_vec_dir(mlx);
         mlx->player->angle -= 0.1;
         if(mlx->player->angle < 0)
             mlx->player->angle += 2 * M_PI;
@@ -31,6 +74,7 @@ static void rotate(t_mlx *mlx)
         mlx->player->pdy = sinf(mlx->player->angle);
     }
     printf("player angle : %f\npdx : %f\npdy : %f\n",mlx->player->angle,mlx->player->pdx,mlx->player->pdy);
+    // printf("deltax : %f\ndeltay : %f\n",mlx->delta.x,mlx->delta.y);
 }
 
 void event(mlx_key_data_t event,void *content)
@@ -42,7 +86,7 @@ void event(mlx_key_data_t event,void *content)
     if(mlx_is_key_down(mlx->id, MLX_KEY_ESCAPE))
         mlx_close_window(mlx->id);
     rotate(mlx);
-    
+    // printf("mapx : %d\nmapy : %d\n",mlx->map.x,mlx->map.y);   
 }
 
 static void draw_map(t_mlx *mlx)
@@ -68,35 +112,36 @@ static void draw_map(t_mlx *mlx)
     }
 }
 
-static void draw_vec_dir(t_mlx *mlx)
-{
-    mlx_put_pixel(mlx->img, ((mlx->player->position.y + 0.5) + (mlx->player->pdy) * 1) * 64, 
-        ((mlx->player->position.x + 0.5) + (mlx->player->pdx) * 1) * 64, 0xFFFF00FF);
-}
 
 static void update_pos_player(t_mlx *mlx)
 {
     draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
+    // mlx->map.x = (int)round(mlx->player->position.y);
+    // mlx->map.y = (int)round(mlx->player->position.x);
     if(mlx_is_key_down(mlx->id, MLX_KEY_S))
     {
+        delete_vec_dir(mlx);
         delete_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
         mlx->player->position.x += 0.1;
         draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
     }
     if(mlx_is_key_down(mlx->id, MLX_KEY_W))
     {
+        delete_vec_dir(mlx);
         delete_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
         mlx->player->position.x -= 0.1;
         draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
     }
     if(mlx_is_key_down(mlx->id, MLX_KEY_D))
     {
+        delete_vec_dir(mlx);
         delete_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
         mlx->player->position.y += 0.1;
         draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
     }
     if(mlx_is_key_down(mlx->id, MLX_KEY_A))
     {
+        delete_vec_dir(mlx);
         delete_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
         mlx->player->position.y -= 0.1;
         draw_character(mlx,(mlx->player->position.y * 64),(mlx->player->position.x * 64));
