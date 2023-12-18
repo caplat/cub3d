@@ -9,6 +9,7 @@ srcs/flood_fill.c \
 srcs/wall.c \
 srcs/mlx.c \
 srcs/event.c \
+srcs/ray.c \
 
 OBJS = ${SRCS:.c=.o}
 

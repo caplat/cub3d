@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:47:47 by derblang          #+#    #+#             */
-/*   Updated: 2023/12/15 16:33:12 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/18 15:39:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_mlx
     t_cub *cub;
     t_point map;
     t_float delta;
+    t_float side_dist;
 }   t_mlx;
 
 //init
@@ -101,14 +102,14 @@ void draw_square_bis(t_mlx *mlx,int x,int y);
 void open_window(t_mlx *mlx);
 void draw_character(t_mlx *mlx,int x,int y);
 void delete_character(t_mlx *mlx,int x,int y);
-int check_collision(t_mlx *mlx);
 
 //event
 
 void event(mlx_key_data_t keycode,void *content);
 void loop(void *param);
-// void draw_map(t_mlx *mlx);
-// void rotate(t_mlx *mlx);
-// void draw_vec_dir(t_mlx *mlx);
+
+//ray.c
+
+void ray_casting(t_mlx *mlx);
 
 #endif

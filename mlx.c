@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:25:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/12/14 19:16:32 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/12/18 14:05:50 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,6 @@ void delete_character(t_mlx *mlx,int x,int y)
         j = 0;
     }
 }
-
-// int check_collision(t_mlx *mlx)
-// {
-//     int x = (int)(mlx->player->position.x + 0.5);
-//     int y = (int)(mlx->player->position.y + 0.5);
-
-//     if(mlx->cub->map[x][y] == '1')
-//         return(1);
-//     return(0);
-// }
 
 void open_window(t_mlx *mlx)
 {
